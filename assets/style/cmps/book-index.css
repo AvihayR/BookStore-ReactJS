@@ -1,0 +1,41 @@
+main.container section.book-index {
+    text-align: center;
+    background-color: #bfbfbf36
+}
+
+main.container section.book-index ul {
+    all: unset;
+    max-width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-inline: auto;
+}
+
+main.container section.book-index li {
+    list-style: none;
+    padding: 15px;
+    background-color: rgb(210, 210, 210);
+    border-radius: 10px;
+    margin-block-end: 10px;
+}
+
+main.container section.book-index li img {
+    width: 50%;
+    height: auto;
+}
+
+main.container section.book-index li:nth-child(even) {
+    background-color: rgb(220, 220, 220);
+    border: 3px solid silver;
+}
+
+main.container section.book-index form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}

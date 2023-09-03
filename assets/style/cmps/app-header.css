@@ -1,0 +1,33 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  padding: 1em;
+  background-color: #222222;
+  color: crimson;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+.app-header .app-nav {
+  display: flex;
+  gap: 20px;
+
+}
+
+.app-header .app-nav a {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3rem;
+  transition: color 0.4s;
+}
+
+.app-header .app-nav a:hover {
+  color: whitesmoke;
+}
+
+@media(max-width: 720px) {
+  .app-header {
+    color: whitesmoke;
+  }
+}
