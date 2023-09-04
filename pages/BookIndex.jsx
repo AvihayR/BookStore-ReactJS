@@ -1,3 +1,4 @@
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { bookService } from "../services/books.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
@@ -16,18 +17,16 @@ export function BookIndex() {
     }, [filterBy])
 
 
-    // function onAddBook(title, listPriceObj) {
-    //     bookService.createBook(title, listPriceObj)
-    //         .then(book => setBooks([...books, book]))
-    //         .catch(err => console.log('Error:', err))
-    // }
-
     function onRemoveBook(bookId) {
         bookService.remove(bookId)
             .then(() => {
                 setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+                showSuccessMsg(`Book removed! ${bookId}`)
             })
-            .catch(err => console.log('Error:', err))
+            .catch(err => {
+                console.log('Error:', err)
+                showErrorMsg(`Error removing book ${bookId}`)
+            })
     }
 
     function onSetFilterBy(filterBy) {

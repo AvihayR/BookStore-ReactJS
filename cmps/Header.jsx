@@ -1,4 +1,5 @@
-const { Link, NavLink } = ReactRouterDOM
+const { NavLink } = ReactRouterDOM
+import { UserMsg } from "./UserMsg.jsx"
 
 export function Header({ onSetPage }) {
 
@@ -10,6 +11,8 @@ export function Header({ onSetPage }) {
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/book">Books</NavLink>
             </nav>
+
+            <UserMsg />
         </header>
     )
 }
