@@ -1,11 +1,16 @@
 import { bookService } from "../services/books.service.js"
 const { useState, useEffect } = React
+const { useParams, useNavigate } = ReactRouterDOM
 
-export function BookDetails({ bookId, onBack }) {
+export function BookDetails({ }) {
     const [book, setBook] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        bookService.get(bookId).then(setBook)
+        bookService.get(params.bookId)
+            .then(setBook)
+            .catch(err => console.log('Error:', err))
     }, [])
 
     function renderPageCount() {
@@ -29,6 +34,11 @@ export function BookDetails({ bookId, onBack }) {
         if (book.listPrice.amount > 150) return 'expensive'
         else if (book.listPrice.amount < 50) return 'cheap'
         else return ''
+    }
+
+
+    function onBack() {
+        navigate('/book')
     }
 
     if (!book) return <div>Loading book...</div>

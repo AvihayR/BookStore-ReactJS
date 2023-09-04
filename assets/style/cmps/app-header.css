@@ -22,6 +22,10 @@
   transition: color 0.4s;
 }
 
+.app-header .app-nav a.active {
+  text-decoration: underline;
+}
+
 .app-header .app-nav a:hover {
   color: whitesmoke;
 }
