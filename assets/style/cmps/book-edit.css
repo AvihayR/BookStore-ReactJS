@@ -1,0 +1,13 @@
+.book-edit form {
+    font-size: 1.2rem;
+}
+
+.book-edit form label,
+.book-edit form button {
+    display: block;
+    margin: 15px auto 0 auto;
+}
+
+.book-edit form input {
+    font-size: 1.2rem;
+}

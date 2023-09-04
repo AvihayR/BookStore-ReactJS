@@ -13,7 +13,8 @@ export const bookService = {
     getEmptyBook,
     getDefaultFilter,
     createBook,
-    createListPrice
+    createListPrice,
+    addReview
 }
 
 function query(filterBy = {}) {
@@ -61,10 +62,6 @@ function getEmptyBook(title = '', listPrice = { amount: 0, currencyCode: null, i
     return { id: '', title, listPrice }
 }
 
-// function getEmptyBook(title = '') {
-//     return { id: '', title, amount: 0, currencyCode: null, isOnSale: false }
-// }
-
 function createBook(title, listPrice = {}, thumbnail = "http://coding-academy.org/books-photos/2.jpg") {
     const book = getEmptyBook(title, listPrice)
     book.id = utilService.makeId()
@@ -77,4 +74,15 @@ function createListPrice(amount, currencyCode, isOnSale) {
 
 function getDefaultFilter() {
     return { txt: '', minPrice: 0 }
+}
+
+function addReview(bookId, review) {
+    review.id = utilService.makeId()
+    return get(bookId)
+        .then(book => {
+            if (book.reviews) book.reviews = [...book.reviews, review]
+            else book.reviews = [review]
+            return book
+        })
+        .then(save)
 }

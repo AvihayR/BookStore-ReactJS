@@ -39,3 +39,21 @@ main.container section.book-index form {
     width: 50%;
     margin: auto;
 }
+
+main.container section.book-index .add-book {
+    display: block;
+    font-size: 1.2rem;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+    font-weight: 700;
+    background-color: crimson;
+    padding: 15px;
+    max-width: 7rem;
+    border-radius: 5px;
+    margin: 0 auto 35px auto;
+    transition: color 0.4s;
+}
+
+main.container section.book-index .add-book:hover {
+    background-color: rgb(60, 60, 60);
+    color: whitesmoke;
+}

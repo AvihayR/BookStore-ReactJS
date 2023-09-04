@@ -1,0 +1,43 @@
+.book-review .reviews .review {
+    background-color: #cccccc;
+    color: #434343;
+    width: 256px;
+    margin: auto;
+    padding: 15px;
+    margin-block-end: 15px;
+    border-radius: 5px;
+}
+
+.reviews .review h1 {
+    font-size: 1.5rem;
+    margin-block-end: 10px;
+    color: crimson;
+}
+
+.book-review form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: #cccccc;
+    border: 3px solid crimson;
+    border-radius: 15px;
+    padding: 15px;
+    margin-block-end: 15px;
+}
+
+.book-review form input {
+    font-size: 1.2rem;
+    color: crimson;
+}
+
+.book-review form button {
+    background-color: crimson;
+    margin-block-start: 15px;
+}
+
+.book-review form button:hover {
+    background-color: #434343;
+    color: crimson;
+}

@@ -1,11 +1,13 @@
+// import { AddReview } from "./AddReview.jsx"
 import { bookService } from "../services/books.service.js"
 const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams, useNavigate, Outlet, useLocation } = ReactRouterDOM
 
 export function BookDetails({ }) {
     const [book, setBook] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         bookService.get(params.bookId)
@@ -36,6 +38,9 @@ export function BookDetails({ }) {
         else return ''
     }
 
+    function onOpenReview() {
+        navigate(`${location.pathname}/review`)
+    }
 
     function onBack() {
         navigate('/book')
@@ -59,6 +64,8 @@ export function BookDetails({ }) {
             <h2>Categories: {book.categories.join()}</h2>
             <p>Language: {book.language}</p>
             <small><span>Book id:</span> {book.id}</small>
+            <button onClick={onOpenReview}>Add review</button>
+            <Outlet />
             <button onClick={onBack}>Back</button>
             {book.listPrice.isOnSale && <div className="sale">On sale!</div>}
         </section>
