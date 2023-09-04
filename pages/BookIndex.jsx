@@ -1,17 +1,13 @@
 import { bookService } from "../services/books.service.js"
 import { BookList } from "../cmps/BookList.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
-import { BookEdit } from "../cmps/BookEdit.jsx"
-
 
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
 
 export function BookIndex() {
     const [books, setBooks] = useState(null)
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
-    const [isBookEdit, setBookEdit] = useState(false)
-    // const [selectedBookId, setSelectedBookId] = useState(null)
-
 
     useEffect(() => {
         bookService.query(filterBy)
@@ -20,11 +16,11 @@ export function BookIndex() {
     }, [filterBy])
 
 
-    function onAddBook(title, listPriceObj) {
-        bookService.createBook(title, listPriceObj)
-            .then(book => setBooks([...books, book]))
-            .catch(err => console.log('Error:', err))
-    }
+    // function onAddBook(title, listPriceObj) {
+    //     bookService.createBook(title, listPriceObj)
+    //         .then(book => setBooks([...books, book]))
+    //         .catch(err => console.log('Error:', err))
+    // }
 
     function onRemoveBook(bookId) {
         bookService.remove(bookId)
@@ -43,6 +39,7 @@ export function BookIndex() {
         <section className="book-index">
 
             <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            <Link to="/book/edit">Add Book</Link>
             <BookList books={books} onRemoveBook={onRemoveBook} />
 
         </section>
