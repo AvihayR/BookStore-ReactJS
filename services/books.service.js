@@ -133,11 +133,23 @@ function prepareData(book) {
     return newBook
 }
 
+
 function getGoogleBooks(keyword) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${keyword}`)
-        .then(res => res.data.items)
-        .then(books => {
-            const booksToController = books.map(book => prepareData(book))
-            return booksToController
-        })
+    const cachedData = localStorage.getItem(`googleBooksCache_${keyword}`);
+
+    if (cachedData) {
+        console.log('from Cache')
+        return Promise.resolve(JSON.parse(cachedData));
+    } else {
+        return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${keyword}`)
+            .then(res => res.data.items)
+            .then(books => {
+                const booksToController = books.map(book => prepareData(book));
+
+                localStorage.setItem(`googleBooksCache_${keyword}`, JSON.stringify(booksToController));
+                console.log('from API')
+                return booksToController;
+            })
+            .catch(err => eventBusService.showErrorMsg('Error - Couldn\'t  load book'))
+    }
 }

@@ -73,7 +73,7 @@ export function BookDetails({ }) {
 
             {renderPrice()}
 
-            <h2>Categories: {book.categories.join()}</h2>
+            <h2>Categories: {book.categories && book.categories.join()}</h2>
             <p>Language: {book.language}</p>
             <small><span>Book id:</span> {book.id}</small>
             <button onClick={onOpenReview}>Add review</button>

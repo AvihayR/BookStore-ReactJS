@@ -7,6 +7,8 @@
     color: white;
     font-weight: bold;
     border-radius: 2px;
+    animation: bounceInRight;
+    animation-duration: 1s;
 }
 
 .user-msg.success {

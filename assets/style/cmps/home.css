@@ -1,0 +1,4 @@
+.home .home-title {
+    animation: bounceInRight;
+    animation-duration: 1s;
+}

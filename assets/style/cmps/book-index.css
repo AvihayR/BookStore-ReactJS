@@ -1,6 +1,8 @@
 main.container section.book-index {
     text-align: center;
-    background-color: #bfbfbf36
+    background-color: #bfbfbf36;
+    animation: fadeIn;
+    animation-duration: 1.2s;
 }
 
 main.container section.book-index ul {

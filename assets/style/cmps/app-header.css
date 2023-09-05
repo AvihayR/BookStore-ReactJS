@@ -8,6 +8,8 @@
   background-color: #222222;
   color: crimson;
   font-family: 'Edu VIC WA NT Beginner', cursive;
+  animation: backInDown;
+  animation-duration: 0.7s;
 }
 
 .app-header .app-nav {

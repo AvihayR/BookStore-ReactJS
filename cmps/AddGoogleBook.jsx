@@ -16,6 +16,7 @@ export function AddGoogleBook() {
 
     function saveGoogleBook(book) {
         bookService.save(book)
+            .then(eventBusService.showSuccessMsg(`Save book: ${book.title}`))
             .then(navigate('/book'))
     }
 
