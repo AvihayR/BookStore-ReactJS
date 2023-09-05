@@ -52,7 +52,7 @@ export function BookEdit() {
             })
     }
 
-    const { title, listPrice } = bookToEdit
+    const { title, listPrice = { amount: 0, currencyCode: 'USD', isOnSale: false } } = bookToEdit
     const { amount, currencyCode, isOnSale } = listPrice
 
     return (

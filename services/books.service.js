@@ -14,7 +14,8 @@ export const bookService = {
     getDefaultFilter,
     createBook,
     createListPrice,
-    addReview
+    addReview,
+    getGoogleBooks: getGoogleBooks
 }
 
 function query(filterBy = {}) {
@@ -33,6 +34,9 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return storageService.get(BOOKS_KEY, bookId)
+        .then(book => {
+            return _setNextPrevBookId(book)
+        })
 }
 
 function remove(bookId) {
@@ -58,10 +62,6 @@ function _createBooks() {
     }
 }
 
-function getEmptyBook(title = '', listPrice = { amount: 0, currencyCode: null, isOnSale: false }) {
-    return { id: '', title, listPrice }
-}
-
 function createBook(title, listPrice = {}, thumbnail = "http://coding-academy.org/books-photos/2.jpg") {
     const book = getEmptyBook(title, listPrice)
     book.id = utilService.makeId()
@@ -85,4 +85,59 @@ function addReview(bookId, review) {
             return book
         })
         .then(save)
+}
+
+function _setNextPrevBookId(book) {
+    return storageService.query(BOOKS_KEY).then((books) => {
+        const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextBook.id
+        book.prevBookId = prevBook.id
+        return book
+    })
+}
+
+function getEmptyBook() {
+    return {
+        title: '',
+        subtitle: '',
+        authors: [],
+        publishedDate: 1900,
+        description: '',
+        pageCount: 0,
+        categories: [],
+        thumbnail: '../assets/imgs/20.jpg',
+        language: 'en',
+        listPrice: {
+            amount: 0,
+            currencyCode: 'EUR',
+            isOnSale: false,
+        },
+    }
+}
+
+function prepareData(book) {
+    const { volumeInfo: { title, subtitle, authors, publishedDate, description, pageCount, categories, imageLinks, language } } = book
+    const newBook = {
+        title,
+        subtitle: subtitle || title,
+        authors,
+        publishedDate,
+        description,
+        pageCount,
+        categories,
+        language,
+        thumbnail: imageLinks.thumbnail
+    }
+    return newBook
+}
+
+function getGoogleBooks(keyword) {
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${keyword}`)
+        .then(res => res.data.items)
+        .then(books => {
+            const booksToController = books.map(book => prepareData(book))
+            return booksToController
+        })
 }

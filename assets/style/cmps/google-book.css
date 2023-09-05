@@ -1,0 +1,39 @@
+ul.google-books {
+    display: grid;
+    place-items: center;
+    background-color: rgb(230, 230, 230);
+}
+
+.google-books li h3.google-book-title {
+    display: inline;
+}
+
+.google-books li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 280px;
+    padding-inline-start: 7px;
+}
+
+.google-books li:nth-child(odd) {
+    background-color: rgb(199, 199, 199);
+}
+
+main.container .google-search {
+    font-size: 1.3rem;
+    border: 2px solid grey;
+    border-radius: 5px;
+    transition: background-color 0.4s;
+}
+
+main.container .google-search:focus {
+    background-color: rgb(68, 68, 68);
+    color: whitesmoke;
+}
+
+main.container .google-span {
+    display: block;
+    font-size: 1.4rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
